@@ -126,7 +126,9 @@ class CliTest(unittest.TestCase):
         with patch.object(llm, "chat", return_value=payload):
             for _ in range(3):
                 self.run_cli(["write", "I very like go there."])
-        code, out = self.run_cli(["write", "I very like go there."])
+            # 第 4 次要留在 patch 里。之前写在 with 外面，本地有 .env 看着是过的，
+            # CI 上没有 key，这一跑直接报「未配置 LLM_API_KEY」，测试挂了。
+            code, out = self.run_cli(["write", "I very like go there."])
         self.assertIn("累计最常被指出的", out)
 
     def test_parser_has_all_subcommands(self):
