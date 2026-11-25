@@ -6,7 +6,7 @@ An English writing coach. Paste a paragraph in and it does two things: rules pic
 
 Two rules run through everything: **every correction has to point at a fragment of the original** — if it cannot, it is dropped; **whatever can be computed locally never goes to the model**, so the model neither misses things nor invents them.
 
-![demo](assets/demo.gif)
+![usage](assets/demo.gif)
 
 ## Why two layers, no way around it
 
