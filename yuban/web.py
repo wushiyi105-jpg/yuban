@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-import base64
 import json
-import sqlite3
 import threading
 import urllib.parse
 from datetime import datetime

@@ -1,6 +1,6 @@
 # 语伴 yuban
 
-[![test](https://github.com/wushiyi105-jpg/yuban/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/yuban/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![test](https://github.com/wushiyi105-jpg/yuban/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/yuban/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![codecov](https://codecov.io/gh/wushiyi105-jpg/yuban/branch/main/graph/badge.svg)](https://codecov.io/gh/wushiyi105-jpg/yuban)
 
 一个英语写作陪练。你贴一段英文进去，它干两件事：规则把能算的硬错挑出来，模型把读懂了才看得出的毛病挑出来。
 
@@ -80,6 +80,22 @@ Last weekend I very like go to the museum with my friend. We take many photo and
 所以每条问题都单独进表（`issues` 表），带类型、原文片段、出处（规则/模型）。`stats` 按类型聚合，`write` 跑完顺带报一次累计——连续三篇都被指出同一个类型，才会触发那句提示。
 
 这也是我给它配 `sqlite` 的唯一理由：不是为了存文章，是为了能按类型数。
+
+## 数据流
+
+一条数据在这几个模块之间怎么走：
+
+```mermaid
+flowchart LR
+    A[一段英文] --> B[checks.py<br/>拼写 · a/an · 中式搭配 · 标点]
+    A --> C[review.py<br/>切句 + 逐句发模型]
+    C --> D[llm.py<br/>批改，每条带 span]
+    D --> E{review.py<br/>span 回原文比对}
+    E -->|对不上| F[丢掉 / 按顺序兜底并留提示]
+    E -->|对得上| G[store.py 入库]
+    B --> G
+    G --> H[cli.py / web.py<br/>规则问题 + 模型问题]
+```
 
 ## 快速开始
 
