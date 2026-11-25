@@ -1,6 +1,6 @@
 # 语伴 yuban
 
-[![test](https://github.com/wushiyi105-jpg/yuban/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/yuban/actions)
+[![test](https://github.com/wushiyi105-jpg/yuban/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/yuban/actions) [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)]() [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 一个英语写作陪练。你贴一段英文进去，它干两件事：规则把能算的硬错挑出来，模型把读懂了才看得出的毛病挑出来。
 

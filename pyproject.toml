@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yuban"
+version = "0.1.0"
+description = "英语写作批改：本地规则查硬错，模型查读懂了才看得出的毛病，每条指正都要点出原文"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+[project.scripts]
+yuban = "yuban.cli:main"
+
+[tool.setuptools]
+packages = ["yuban"]
