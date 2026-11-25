@@ -113,6 +113,53 @@ Start the Web UI:
 python -m yuban serve      # http://127.0.0.1:8775
 ```
 
+Run in Docker (the container uses the default port 8775):
+
+```bash
+docker build -t yuban .
+docker run -p 8775:8775 yuban
+```
+
+## 🤔 Why not just ask a general LLM
+
+A general model will write a paragraph of feedback on your English essay. Yuban adds the three things it cannot:
+
+1. **Every correction needs the original** — a correction must point at a fragment of your text; if it cannot, it is dropped. Chat models like to say "use more advanced vocabulary" without telling you which sentence or what to change it to.
+2. **What can be computed is not given to the model** — spelling, repeated words, sentence-initial capitals and subject-verb agreement are caught by local rules; the model handles only what requires reading for meaning (collocation, tone, logic jumps). Clear division means fewer misses and fewer inventions.
+3. **Essays and history stay local** — every piece you write, every score and error sits in SQLite, so "I got this word wrong three times" is answerable; essays are private and never uploaded.
+4. **Reproducible** — the rule layer returns the same result for the same essay, and the model layer's claims are checked against source fragments, with failures hidden rather than shown.
+
+## 🎯 Use cases
+
+- **Practising a paragraph a day**: paste it in, read the hard-error list first (free), then the model's expression notes; write another tomorrow and watch recurring errors accumulate.
+- **A teacher grading a class**: the rule layer sweeps spelling and basic grammar, so the teacher only reads expression notes, saving half the time.
+- **Exam preparation**: compare against a target level (B1/B2), revise one essay towards it, and see whether vocabulary or structure is the gap.
+
+## 🗺 Roadmap
+
+- **Error-type statistics**: aggregate by spelling, collocation, tense and logic to reveal stable weaknesses.
+- **CEFR alignment**: map levels to actual scores and state what is still missing for B2.
+- **Sentence-level rewriting**: pick one sentence, offer two or three rewrites with the difference explained, instead of rewriting the whole essay.
+- **Annotated export**: produce Markdown with inline comments for printing or handing to a student.
+- **Personal error book**: repeated words and collocations in one table, reviewed at intervals.
+
+## ❓ FAQ
+
+**Where do I get an API key?**
+The project ships without one. It defaults to Zhipu (`glm-4.6`); DeepSeek or a local model also work — see the comments in `.env.example`.
+
+**Where is data stored, and is it uploaded?**
+Essays, scores and history live in local SQLite; a model call sends only the current essay, not your past writing.
+
+**Does it work without a key?**
+Yes. `check` runs local rules only, catching spelling, repetition and capitalisation errors; the model's expression layer is absent.
+
+**How do I switch models?**
+Change `LLM_BASE_URL`, `LLM_MODEL` and `LLM_API_KEY`; `check` does not need a model, `write` does.
+
+**Where does the score come from?**
+The rule layer scores hard-error density; the model layer judges expression without issuing a total. The two are shown separately so one number cannot hide the details.
+
 ## Commands
 
 | Command | What it does |
