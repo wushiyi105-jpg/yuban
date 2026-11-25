@@ -1,5 +1,7 @@
 # 语伴 yuban
 
+[![test](https://github.com/wushiyi105-jpg/yuban/workflows/test/badge.svg)](https://github.com/wushiyi105-jpg/yuban/actions)
+
 一个英语写作陪练。你贴一段英文进去，它干两件事：规则把能算的硬错挑出来，模型把读懂了才看得出的毛病挑出来。
 
 两条规矩贯穿全程：**每条指正都要点出原文里的片段**，点不出就丢掉；**本地能算的绝不交给模型**，省得模型一边漏一边编。
