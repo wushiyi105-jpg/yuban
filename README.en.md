@@ -214,6 +214,4 @@ Works with any OpenAI-style `/chat/completions`. `--api-key --base-url --model` 
 
 ---
 
-Author: shiyi
-Email: wushiyi105@gmail.com
-GitHub: [wushiyi105-jpg](https://github.com/wushiyi105-jpg)
+Xiao Mi · 17612850106

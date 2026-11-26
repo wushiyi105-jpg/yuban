@@ -214,6 +214,4 @@ LLM_MODEL=glm-4.6
 
 ---
 
-作者：shiyi
-邮箱：wushiyi105@gmail.com
-GitHub：[wushiyi105-jpg](https://github.com/wushiyi105-jpg)
+作者：小米 · 17612850106
