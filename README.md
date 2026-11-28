@@ -8,6 +8,8 @@
 
 ![示例](assets/demo.gif)
 
+[打开这次本地实跑的结果图](assets/result.png) — 上面 GIF 与这张图都来自 2026-11-28 的新版界面，不是示意图。
+
 ## 为什么非要分两层
 
 我先让模型全权接管过一次。结果是它把 `a apple` 判成「冠词错误」却说 span 是 `apple`（原文根本没有单独的 apple），又对一句完全正确的 `The museum is very big` 也给了一条「用词不够地道」，理由是「big 可以让位于 spacious」。
