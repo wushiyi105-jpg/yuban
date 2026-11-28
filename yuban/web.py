@@ -15,7 +15,7 @@ MAX_BODY = 200_000
 PAGE = """<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>语伴 · 英语写作陪练</title>
+<title>语伴 · 这句英文问题在哪</title>
 <style>
 :root{--bg:#0d1117;--card:#161b22;--line:#30363d;--text:#c9d1d9;--dim:#8b949e;
 --ok:#7ee787;--warn:#e3b341;--bad:#ff7b72;--blue:#79c0ff}
@@ -48,8 +48,75 @@ li{padding:7px 0;border-bottom:1px dashed #21262d;font-size:14px}
 .err{color:var(--bad);font-size:13px;margin-top:8px}
 select{background:#0b0f14;color:var(--text);border:1px solid var(--line);border-radius:6px;padding:6px 10px}
 .spin{color:var(--dim);font-size:13px}
+
+:root{--maxw:1080px;--bg:#f3efe5;--card:#fffdf7;--ink:#29253d;--text:#29253d;--dim:#6d687d;--line:#d8d0bd;--accent:#4b3d7a;--muted:#6d687d}
+.wrap{max-width:1080px}
+body{background:#f3efe5;color:#29253d;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+h1{color:#29253d}
+header{max-width:1080px;margin:0 auto}
+input,textarea,select{background:#fff;color:#29253d;border-color:#d8d0bd;border-radius:2px}
+button:not(.ghost):not(.tab){background:#4b3d7a;color:#fff;border-radius:2px}
+button.ghost{background:transparent!important;color:#4b3d7a!important;border:1px solid #d8d0bd!important}
+h2,h3{color:#4b3d7a}
+pre{background:#fafaf6;color:#29253d;border-color:#d8d0bd}
+.item,.card{border-color:#d8d0bd;background:#fffdf7}
+.k,.empty,.hint{color:#6d687d}
+
+h1{font-size:clamp(31px,5vw,39px);line-height:1.26}
+.prod{display:block;font-size:11px;line-height:1.4;letter-spacing:.18em;font-weight:650;margin-bottom:8px;opacity:.72}
+.lede,.sub{max-width:62ch;line-height:1.75}
+.route{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:16px auto 20px;border:1px solid var(--line);background:var(--line);max-width:var(--maxw)}
+.route span{padding:11px 13px;background:var(--card);font-size:12px;line-height:1.5}
+.route b{display:block;font-size:10px;letter-spacing:.1em;margin-bottom:3px;opacity:.66}
+button{min-height:46px}
+input,select{min-height:44px}
+pre{white-space:pre-wrap}
+@media(max-width:680px){
+  .wrap{padding:20px 16px 56px}
+  .route{grid-template-columns:1fr}
+  h1{font-size:30px!important}
+  .row>div{min-width:100%!important}
+  button{width:100%}
+}
+
+:root{--bg:#f3efe5;--card:#fffdf7;--line:#d8d0bd;--text:#29253d;--dim:#6d687d;--accent:#4b3d7a}
+body{background:#f3efe5;color:#29253d}
+h1{font-size:38px;line-height:1.24;color:#29253d}
+h1 span{color:#6d687d!important}
+.sub{color:#6d687d;font-size:14px}
+.row{display:grid!important;grid-template-columns:1fr 1fr;gap:18px}
+.panel{background:#fffdf7;border:1px solid #d8d0bd;border-radius:2px;padding:20px;box-shadow:none}
+button{background:#4b3d7a;color:#fff;border-radius:2px}
+button:hover{background:#3d3163}
+input,textarea,select{background:#fff;color:#29253d;border-color:#d4c9b4;border-radius:2px}
+input:focus,textarea:focus,select:focus{border-color:#4b3d7a;box-shadow:0 0 0 2px #ddd7e7}
+.issues li,.issue{border-left:3px solid #4b3d7a;background:#fbf8f1}
+h2{color:#4b3d7a;font-size:14px;letter-spacing:.05em}
+.meta,.spin{color:#6d687d}
+@media(max-width:760px){.row{grid-template-columns:1fr}}
+
+
+/* mobile-32 */
+
+@media(max-width:760px){
+  main{grid-template-columns:1fr!important}
+  aside{border-right:0!important;border-bottom:1px solid #d8d0bd;width:auto!important}
+  section{padding:16px!important}
+  .row{flex-wrap:wrap!important}
+  .row>div{min-width:100%!important}
+  h1{font-size:30px!important}
+  .route{grid-template-columns:1fr!important}
+  button{min-height:48px}
+  pre{overflow-x:auto}
+}
+
+/* mobile-height */
+@media(max-width:760px){main{min-height:auto!important}aside{min-height:0!important}}
 </style></head><body><div class="wrap">
-<h1>语伴 <span style="color:var(--dim);font-size:13px;font-weight:400">规则查硬错 · 模型看语感</span></h1>
+<h1><span class="prod">语伴</span>这句英文，问题在哪 <span style="color:var(--dim);font-size:13px;font-weight:400">规则查硬错 · 模型看语感</span></h1>
+  <div class="route" aria-label="任务步骤"><span><b>01</b>贴英文段落</span><span><b>02</b>看硬错与语气</span><span><b>03</b>生成复练题</span></div>
+
+  <p class="sub">给常写英文工作邮件的人：逐句指出问题，保留原片段，标明是语法、语气还是可选风格；反复出现的两三个问题会变成你的复练题。</p>
 <div class="sub">每条指正都必须点名原文里的片段。查不到出处的，程序当场丢掉。</div>
 
 <div class="row">
